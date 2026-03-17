@@ -2,8 +2,8 @@
 import pandas as pd
 import os
 from datetime import datetime
-
-PLANET_FOLDER = "C:/Users/navie/Downloads"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PLANET_FOLDER = os.path.join(BASE_DIR, "data", "planets")
 
 PLANETS = ['Moon', 'Sun', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu']
 
