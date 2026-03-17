@@ -1,5 +1,7 @@
 streamlit
-anthropic
+groq
 chromadb
 sentence-transformers
 python-dotenv
+pandas
+openpyxl
