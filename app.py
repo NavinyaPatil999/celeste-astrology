@@ -123,10 +123,18 @@ hr { border-color: #1a4a2a !important; }
 """, unsafe_allow_html=True)
 
 # ── Setup ──────────────────────────────────────────────────────────
+@st.cache_resource(show_spinner=False)
+def setup():
+    build_index()
+    return True
+
+# ── Planet Loader ────────────────────────────────
 @st.cache_data(ttl=3600, show_spinner=False)
 def load_planets():
     from planet_loader import get_current_positions
     return get_current_positions()
+
+# ── Run setup ────────────────────────────────────
 with st.spinner(""):
     setup()
 
