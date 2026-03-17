@@ -2,12 +2,8 @@
 import streamlit as st
 from rag import build_index
 from chatbot import chat
-from planet_loader import format_positions_for_prompt
 from zodiac_wheel import generate_zodiac_wheel
-@st.cache_data(ttl=3600, show_spinner=False)
-def load_planets():
-    from planet_loader import get_current_positions
-    return get_current_positions()
+
 st.set_page_config(page_title="Celeste — Vedic Astrologer", page_icon="🌿", layout="centered")
 
 st.markdown("""
@@ -127,15 +123,10 @@ hr { border-color: #1a4a2a !important; }
 """, unsafe_allow_html=True)
 
 # ── Setup ──────────────────────────────────────────────────────────
-@st.cache_resource(show_spinner=False)
-def setup():
-    build_index()
-    return True
-
 @st.cache_data(ttl=3600, show_spinner=False)
 def load_planets():
+    from planet_loader import get_current_positions
     return get_current_positions()
-
 with st.spinner(""):
     setup()
 
