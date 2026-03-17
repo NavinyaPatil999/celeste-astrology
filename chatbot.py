@@ -26,29 +26,31 @@ def detect_intent(message):
     return "general"
 
 def chat(user_message, sign, name, topic, history):
-    intent = detect_intent(user_message)
-
-    if intent == "horoscope":
+    # FORCE horoscope for button + keyword
+    if "horoscope" in user_message.lower():
         return generate_horoscope(name, sign, topic)
 
-    context = retrieve(query=user_message, sign1=sign, topic=topic, top_k=3)
+    # Compatibility
+    if "compatibility" in user_message.lower():
+        return generate_horoscope(name, sign, topic)
 
-    system_prompt = f"""You are Celeste, a wise Vedic astrologer AI.
-User: {name if name else 'Seeker'}, Sign: {sign}, Topic: {topic}
-Astrology Knowledge:
-{context}
-Be mystical, warm, and specific to {sign}. Answer in 4-6 sentences."""
+    # Default RAG
+    context = retrieve(
+        query=user_message,
+        sign1=sign,
+        topic=topic,
+        top_k=3
+    )
 
-    messages = [{"role": "system", "content": system_prompt}]
-    for m in history[-6:]:
-        if m["role"] in ["user", "assistant"]:
-            messages.append({"role": m["role"], "content": m["content"]})
-    messages.append({"role": "user", "content": user_message})
+    prompt = f"""User: {user_message}
+Context: {context}
+Answer in a mystical astrology tone."""
 
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        messages=messages,
+        messages=[{"role": "user", "content": prompt}],
         max_tokens=500,
         temperature=0.7
     )
+
     return response.choices[0].message.content
