@@ -1,10 +1,13 @@
 # app.py — Celeste — Forest Green Luxury Edition
 import streamlit as st
 from rag import build_index
-from chatbot import chat
-from planet_loader import get_current_positions, format_positions_for_prompt
+from chatbot import chat,
+format_positions_for_prompt
 from zodiac_wheel import generate_zodiac_wheel
-
+@st.cache_data(ttl=3600)
+def load_planets():
+    from planet_loader import get_current_positions
+    return get_current_positions()
 st.set_page_config(page_title="Celeste — Vedic Astrologer", page_icon="🌿", layout="centered")
 
 st.markdown("""

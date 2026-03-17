@@ -3,7 +3,13 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 from rag import retrieve
-from planet_loader import get_current_positions, format_positions_for_prompt, get_sign_current_transits
+def generate_horoscope(name: str, sign: str, topic: str) -> str:
+
+    from planet_loader import (
+        get_current_positions,
+        format_positions_for_prompt,
+        get_sign_current_transits
+    )
 from datetime import datetime
 
 load_dotenv()
