@@ -9,26 +9,37 @@ Hey! I'm Navinya, a third-year AI/ML student from SVKM's NMIMS. I built Celeste 
 
 ---
 🔮 What is Celeste?
+
 Celeste is an AI astrologer that actually knows astrology. Not just "you're a Scorpio so you're mysterious" — but real Vedic concepts like Dasha cycles, Dosha remedies, Nakshatra positions, and actual planetary transits happening right now.
+
 You can ask her things like:
+
 "What does Mars Mahadasha mean for my career?"
 "Am I compatible with a Virgo?"
 "Give me my love horoscope for this month"
 "What is Kaal Sarp Dosha and how do I remedy it?"
 And she'll give you a real, personalized answer — not a generic one.
+
 ---
 
 
 ✨ What makes it special
+
 Real planetary data — I have minute-by-minute planetary positions from 1990 to 2029 (yes, really). When Celeste generates your horoscope, she actually looks up where the Sun, Moon, Mars, Jupiter and every other planet is today and uses that in her answer.
+
 14,400+ compatibility examples — The RAG system pulls from a real Vedic astrology dataset with detailed compatibility analysis including Dasha and Dosha influences. Not made up. Real data.
+
 Reddit astrology discussions — I also indexed 2,838 high-quality posts from r/astrology, so Celeste has a sense of how real people talk about and experience astrology.
+
 Beautiful zodiac wheel — An interactive wheel that shows all 9 Vedic planets in their current positions, color-coded by element. Built from scratch in SVG.
+
 ---
 
 
 🛠️ How I built it
+
 Honestly? With a lot of trial and error and way too many terminal errors 😅
+
 The stack is pretty simple:
 Streamlit for the UI
 Groq for the AI — running llama-3.3-70b-versatile
