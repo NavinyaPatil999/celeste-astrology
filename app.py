@@ -2,9 +2,9 @@
 import streamlit as st
 from rag import build_index
 from chatbot import chat
-format_positions_for_prompt
+from planet_loader import format_positions_for_prompt
 from zodiac_wheel import generate_zodiac_wheel
-@st.cache_data(ttl=3600)
+@st.cache_data(ttl=3600, show_spinner=False)
 def load_planets():
     from planet_loader import get_current_positions
     return get_current_positions()
