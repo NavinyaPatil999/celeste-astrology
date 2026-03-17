@@ -256,20 +256,23 @@ if compat_btn:
 
 # ── Chat history ───────────────────────────────────────────────────
 for msg in st.session_state.messages:
-    avatar = "✦" if msg["role"] == "user" else "🌿"
+    avatar = "user" if msg["role"] == "user" else "assistant"
     with st.chat_message(msg["role"], avatar=avatar):
         st.markdown(msg["content"])
 
 # ── Chat input ─────────────────────────────────────────────────────
 if prompt := st.chat_input("Ask Celeste anything..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user", avatar="✦"):
+    
+    with st.chat_message("user", avatar="user"):
         st.markdown(prompt)
-    with st.chat_message("assistant", avatar="🌿"):
+        
+    with st.chat_message("assistant", avatar="assistant"):
         with st.spinner("Consulting the cosmos..."):
             try:
                 response = chat(prompt, sign, name, topic, get_history())
             except Exception as e:
                 response = f"Error: {e}"
         st.markdown(response)
+        
     st.session_state.messages.append({"role": "assistant", "content": response})
