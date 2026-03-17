@@ -24,14 +24,15 @@ def detect_intent(message):
         if any(k in msg for k in keywords):
             return intent
     return "general"
-
 def chat(user_message, sign, name, topic, history):
-    # FORCE horoscope for button + keyword
-    if "horoscope" in user_message.lower():
+    msg = user_message.lower()
+
+    # Horoscope
+    if any(k in msg for k in ["horoscope", "generate", "prediction", "forecast"]):
         return generate_horoscope(name, sign, topic)
 
     # Compatibility
-    if "compatibility" in user_message.lower():
+    if any(k in msg for k in ["compatibility", "match", "partner", "love"]):
         return generate_horoscope(name, sign, topic)
 
     # Default RAG
