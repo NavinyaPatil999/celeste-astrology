@@ -1,7 +1,7 @@
 streamlit
-groq
-chromadb==1.5.5
+chromadb
 sentence-transformers
+groq
 python-dotenv
 pandas
 numpy
